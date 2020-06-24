@@ -17,8 +17,26 @@ function goToMainMenu() {
     alert(windowText);
     goToMainMenu();
   }
+  if(mainMenuResponse === 5){
+    let rugText = `Something`
+    alert(rugText);
+    goToTheMainMenu();
+  }
 
+  if(mainMenuResponse === 9){
+    let doorText = `Something`
+    alert(doorText);
+    let doorCodeAttempt = codeEntry();
+    let doorCodeAnswer = 4321
+    if(doorCodeAttempt === 4321){
+      alert("Correct code!")
+    } else {
+      alert("Incorrect code.")
+    }
+  }
 }
+
+
 
 function getAnswer(question, validAnswers){
   let answer = "";
@@ -36,6 +54,16 @@ function getAnswer(question, validAnswers){
   return answer;
 }
 
+function codeEntry(question){
+  let answer = "";
+  while(answer.toString().trim() === ""){
+    answer = prompt(question);
+    if(answer === null || answer === false){
+      return goToTheMainMenu();
+    }
+  }
+  return answer;
+}
 
 
 
