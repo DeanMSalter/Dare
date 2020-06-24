@@ -1,0 +1,46 @@
+<script>
+let introText = `Answer the questions using the dedicated numbers. Good Luck.`
+let mainMenu = `You are stuck in a room full of many different obects. door to the room is currently locked. The metal door handle you notice a lock needing a four digit code.`
+let mainMenuOptions = `In the room you notice:\n1. Calender,\n2. Bookcase,\n3. Table and Lamp\n4. Chest of Drawers\n5. Rug\n6. Desk\n7. Bed\n8. Window\n9. Door`
+let mainMenuResponses = [1,2,3,4,5,6,7,8,9]
+
+function startGame() {
+  alert(introText);
+  goToMainMenu();
+}
+
+function goToMainMenu() {
+  let mainMenuResponse =  getAnswer(mainMenu + mainMenuOptions, mainMenuResponses);
+
+  if(mainMenuResponse === 8){
+    let windowText = `Out the window all you can see is the brick wall before you.`
+    alert(windowText);
+    goToMainMenu();
+  }
+
+}
+
+function getAnswer(question, validAnswers){
+  let answer = "";
+  while(answer.toString().trim() === ""){
+    answer = prompt(question);
+    if(answer === null || answer === false) {
+      return  goToMainMenu();
+    }
+    answer = parseInt(answer);
+    if(!validAnswers.includes(answer)) {
+      alert("Not a valid answer")
+      answer = "";
+    }
+  }
+  return answer;
+}
+
+
+
+
+
+</script>
+<html>
+  <input type="button" value="launch game" onclick="javascript:startGame()"/>
+</html>
