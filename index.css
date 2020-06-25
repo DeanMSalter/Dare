@@ -1,0 +1,20 @@
+html{
+  background: gray;
+}
+#explainationText{
+  text-align: center;
+  margin: auto;
+  font-size: 2em;
+}
+#startGameBtn{
+  position: fixed;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 25%;
+  height: 15%;
+  font-size: 2em;
+  border:solid black;
+}
