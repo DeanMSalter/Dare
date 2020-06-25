@@ -13,6 +13,8 @@ const windowText = `Out the window all you can see is the brick wall before you.
 
 //Rug
 const rugText = `Something`
+const rugMenuOptions = `\n1. Inspect\n2. Look Underneath`
+const rugMenuReponses = [1,2]
 
 //Door
 const doorText = `You approach the door. The metal frame is consistent with the metal door handle. You notice there are no marks or scratches. What would you like to do?`
@@ -27,22 +29,35 @@ function startGame() {
 
 function goToMainMenu() {
   let mainMenuResponse =  getAnswer(mainMenuText + mainMenuOptions, mainMenuResponses);
-
+  //Rug
+  if(mainMenuResponse === 5){
+    rug();
+  }
+  //Window
   if(mainMenuResponse === 8){
     alert(windowText);
     goToMainMenu();
   }
-  if(mainMenuResponse === 5){
-    alert(rugText);
-    goToMainMenu();
-  }
-
+  //Door
   if(mainMenuResponse === 9){
     door();
   }
-
+  //Quit
   if(mainMenuResponse === 0){
     location.reload();
+  }
+}
+
+function rug(){
+  let rugMenuResponse = getAnswer(rugText + rugMenuOptions + rugMenuResponses)
+
+  if(rugMenuReponse === 1){
+    alert(`You see the large rug covering most of the floor at the bottom of the bed. The top right corner seems to curl up slightly.`);
+    rug();
+  }
+  if (rugMenuReponse === 2){
+    alert(`You notice ettchings on the bottom of the rug. These resemble B, C, L, D.`);
+    rug();
   }
 }
 
