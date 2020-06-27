@@ -1,11 +1,12 @@
 html{
   background: gray;
 }
-#explainationText{
+.explainationText{
   text-align: center;
   margin: auto;
   font-size: 2em;
 }
+
 #startGameBtn{
   position: fixed;
   margin: auto;
@@ -17,4 +18,9 @@ html{
   height: 15%;
   font-size: 2em;
   border:solid black;
+}
+#answerThePrompts{
+    position: relative;
+    margin: auto;
+    top: 45%;
 }
