@@ -1,4 +1,4 @@
-const notAnOption = `Not an option.`
+  const notAnOption = `Not an option.`
 
 
 //Main Menu
@@ -15,6 +15,7 @@ const calenderMenuResponses = [1,2]
 const tableLampText =`The lamp is placed on a dark wooden side table. Beside the lamp is a remote control.`
 const tableLampOptions = `\n1. Inspect\n2. Look Under Lamp`
 const tableLampResponses = [1,2]
+const lampCodeAnswer = '14'
 
 //Bookcase
 const bookcaseText = `The bookcase is full of all kinds of different books. At the botttom is a small draw`
@@ -154,11 +155,12 @@ function tableLamp(){
   let tableLampMenuResponse = getAnswer(tableLampText + tabeLampMenuOptions, tableLampMenuResponses)
 
   if(tableLampMenuResponse === 1){
-    alert(``);
+    alert(`The remote next to the lamp shows coloured buttons.\1.Red\2.Orange\3.White\4.Blue\5.Yellow.`);
+    let lampCodeAttempt = codeEntry("The lamp requires you to press the correct buttons in order to turn on, lampCodeAnswer")
 
   }
   if (tableLampMenuResponse === 2){
-    alert(`There are ettchings on the bottom of the rug. These resemble B, C, L, D.`);
+    alert(`The table is blank underneath. There are no distinct markings.`);
     tableLamp();
 }
 
