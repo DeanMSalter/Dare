@@ -3,7 +3,7 @@
 
 //Main Menu
 const mainMenuText = `You are stuck in a room full of many different objects. The door to the room is currently locked. In the metal door handle you notice a combination lock.`
-const mainMenuOptions = `In the room you notice:\n1. Calender,\n2. Bookcase,\n3. Table and Lamp\n4. Chest of Drawers\n5. Rug\n6. Desk\n7. Bed\n8. Window\n9. Door\n0. Quit`
+const mainMenuOptions = `In the room you notice:\n1. Calender\n2. Bookcase\n3. Table and Lamp\n4. Chest of Drawers\n5. Rug\n6. Desk\n7. Bed\n8. Window\n9. Door\n0. Quit`
 const mainMenuResponses = [1,2,3,4,5,6,7,8,9,0]
 
 //Calender
@@ -12,9 +12,9 @@ const calenderMenuOptions =`\n1. Inspect\n2. Pick Up`
 const calenderMenuResponses = [1,2]
 
 //Table and Lamp
-const tableLampText =`The lamp is placed on a dark wooden side table. Beside the lamp is a remote control.`
-const tableLampOptions = `\n1. Inspect\n2. Look Under Lamp`
-const tableLampResponses = [1,2]
+const tableLampText ='The lamp is placed on a dark wooden side table. Beside the lamp is a remote control.'
+const tableLampMenuOptions = `\n1. Inspect\n2. Look Under Lamp`
+const tableLampMenuResponses = [1,2]
 const lampCodeAnswer = '14'
 
 //Bookcase
@@ -137,7 +137,7 @@ function bookcase() {
     let bookcaseDrawMenuResponse = getAnswer(bookcaseDrawMenuText + bookcaseDrawMenuOptions, bookcaseDrawMenuResponses)
 
     if (bookcaseDrawMenuResponse === 1){
-      alert(`Red Leather Book\nOnce there were four boats. One red, one orange, one blue and one green. They fought in a huge battle. In the end, green was superior.`)
+      alert(`Red Leather Book\nOnce there were coloured boats. They fought in a huge battle until most were destroyed. In the end they decided to never have such a devastating war. So, the red and the blue fleets joined together in a treaty.`)
       bookcaseDrawMenu()
     }
     else if (bookcaseDrawMenuResponse === 2){
@@ -152,16 +152,24 @@ function bookcase() {
 
 //3
 function tableLamp(){
-  let tableLampMenuResponse = getAnswer(tableLampText + tabeLampMenuOptions, tableLampMenuResponses)
+  let tableLampMenuResponse = getAnswer(tableLampText + tableLampMenuOptions, tableLampMenuResponses)
 
   if(tableLampMenuResponse === 1){
-    alert(`The remote next to the lamp shows coloured buttons.\1.Red\2.Orange\3.White\4.Blue\5.Yellow.`);
-    let lampCodeAttempt = codeEntry("The lamp requires you to press the correct buttons in order to turn on, lampCodeAnswer")
-
+    alert('The remote next to the lamp shows coloured buttons.\n1.Red\n2.Orange\n3.White\n4.Blue\n5.Yellow.');
+    let lampCodeAttempt = codeEntry("The lamp requires you to press the correct buttons in order to turn on", lampCodeAnswer);
+    if(lampCodeAttempt){
+      alert("The lamp lights up with a Blue background and Red shape in the middle that resembles a number 3.");
+      tableLamp();
+    } else {
+      alert("The lamp lights up in your chosen colour but reveals nothing else.");
+      tableLamp();
+    }
   }
+
   if (tableLampMenuResponse === 2){
     alert(`The table is blank underneath. There are no distinct markings.`);
     tableLamp();
+  }
 }
 
 //5
