@@ -1,5 +1,5 @@
-  const notAnOption = `Not an option.`
-
+const notAnOption = `Not an option.`
+console.log("test222")
 
 //Main Menu
 const mainMenuText = `You are stuck in a room full of many different objects. The door to the room is currently locked. In the metal door handle you notice a combination lock.`
@@ -15,8 +15,17 @@ const calenderMenuResponses = [1,2]
 const tableLampText ='The lamp is placed on a dark wooden side table. Beside the lamp is a remote control.'
 const tableLampMenuOptions = `\n1. Inspect\n2. Look Under Lamp`
 const tableLampMenuResponses = [1,2]
-const lampCodeAnswer = '14'
-
+const colourCombinations = [
+  ["Red", "Amber", "Pink", "Purple", "Amber"],
+  ["Amber", "Orange", "Yellow", "Brown", "Amber"],
+  ["Pink", "Yellow", "White", "Light Blue", "Cream"],
+  ["Purple", "Brown", "Light Blue", "Blue", "Green"],
+  ["Amber", "Amber", "Cream", "Green", "Yellow"],
+];
+const lampCodeValidAnswers = [1,2,3,4,5]
+const colours = ["Red", "Orange", "White", "Blue", "Yellow"]
+let colour1 = null;
+let colour2 = null;
 //Bookcase
 const bookcaseText = `The bookcase is full of all kinds of different books. At the botttom is a small draw`
 const bookcaseMenuOptions = `\n1. Inspect\n2. Open Drawer`
@@ -76,6 +85,7 @@ function goToMainMenu() {
   //Quit
   if(mainMenuResponse === 0){
     location.reload();
+    throw ("Exit")
   }
 }
 
@@ -153,19 +163,30 @@ function bookcase() {
 //3
 function tableLamp(){
   let tableLampMenuResponse = getAnswer(tableLampText + tableLampMenuOptions, tableLampMenuResponses)
-
   if(tableLampMenuResponse === 1){
-    alert('The remote next to the lamp shows coloured buttons.\n1.Red\n2.Orange\n3.White\n4.Blue\n5.Yellow.');
-    let lampCodeAttempt = codeEntry("The lamp requires you to press the correct buttons in order to turn on", lampCodeAnswer);
+    let lampCodeAttempt = getAnswer("The lamp has a white base and is currently turned off. The remote next to the lamp shows coloured buttons.\n1.Red\n2.Orange\n3.White\n4.Blue\n5.Yellow.", lampCodeValidAnswers);
     if(lampCodeAttempt){
-      alert("The lamp lights up with a Blue background and Red shape in the middle that resembles a number 3.");
-      tableLamp();
-    } else {
-      alert("The lamp lights up in your chosen colour but reveals nothing else.");
+      lampCodeAttempt --
+      if(colour1 !== null && colour2 !== null) {
+        colour1 = lampCodeAttempt;
+        alert("The lamp is now " + colours[colour1]);
+        colour2 = null;
+      }
+      else if(colour1 !== null && colour2 === null){
+        colour2 = lampCodeAttempt;
+        if(colourCombinations[colour1][colour2] == "Purple"){
+          alert("The lamp lights up with a Blue background and Red shape in the middle that resembles a number 3.");
+        }else{
+          alert("The lamp is now " + colourCombinations[colour1][colour2]);
+        }
+      }
+      else if(colour1 === null && colour2 === null) {
+        colour1 = lampCodeAttempt;
+        alert("The lamp is now " + colours[colour1]);
+      }
       tableLamp();
     }
   }
-
   if (tableLampMenuResponse === 2){
     alert(`The table is blank underneath. There are no distinct markings.`);
     tableLamp();
@@ -215,7 +236,6 @@ function door(){
   }
 }
 
-
 //Utility
 function getAnswer(question, validAnswers){
   let answer = "";
@@ -234,6 +254,7 @@ function getAnswer(question, validAnswers){
 }
 
 function codeEntry(question, correctAnswer){
+  console.log("adsadsadad")
   let answer = "";
   while(answer.toString().trim() === ""){
     answer = prompt(question);
